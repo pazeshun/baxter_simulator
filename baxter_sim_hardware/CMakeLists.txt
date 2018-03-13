@@ -12,6 +12,14 @@ find_package(catkin
   tf
 )
 
+## In kinetic, cv_bridge does not include all opencv components
+## https://github.com/ethz-asl/grid_map/issues/141
+find_package(OpenCV
+  REQUIRED COMPONENTS
+  opencv_highgui
+  opencv_imgcodecs
+)
+
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(cmake_modules REQUIRED)
 
@@ -24,6 +32,10 @@ catkin_package(
     cv_bridge
     image_transport
     baxter_sim_kinematics
+  ## In kinetic, cv_bridge does not include all opencv components
+  ## https://github.com/ethz-asl/grid_map/issues/141
+  DEPENDS
+    OpenCV
   LIBRARIES ${PROJECT_NAME}
 )
 
@@ -34,7 +46,10 @@ include_directories(include
 )
 
 add_executable(baxter_emulator src/baxter_emulator.cpp)
-target_link_libraries(baxter_emulator ${catkin_LIBRARIES})
+target_link_libraries(baxter_emulator ${catkin_LIBRARIES}
+  ## In kinetic, cv_bridge does not include all opencv components
+  ## https://github.com/ethz-asl/grid_map/issues/141
+  ${OpenCV_LIBRARIES})
 add_dependencies(baxter_emulator ${catkin_EXPORTED_TARGETS})
 
 install(

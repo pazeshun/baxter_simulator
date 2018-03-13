@@ -34,12 +34,16 @@
 #ifndef baxter_sim_io_QNODE_HPP_
 #define baxter_sim_io_QNODE_HPP_
 
+// Without this #ifndef, a build error occurs as Qt4 is too old in 16.04
+// https://answers.ros.org/question/233786/parse-error-at-boost_join/
+#ifndef Q_MOC_RUN
 #include <ros/ros.h>
 #include <string>
 #include <QThread>
 #include <QStringListModel>
 #include <baxter_core_msgs/NavigatorState.h>
 #include <baxter_core_msgs/DigitalIOState.h>
+#endif
 
 namespace baxter_sim_io {
 

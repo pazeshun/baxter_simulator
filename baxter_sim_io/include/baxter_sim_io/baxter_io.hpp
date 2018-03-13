@@ -35,11 +35,15 @@
 #ifndef BAXTER_SIM_IO_BAXTER_IO_H
 #define BAXTER_SIM_IO_BAXTER_IO_H
 
+// Without this #ifndef, a build error occurs as Qt4 is too old in 16.04
+// https://answers.ros.org/question/233786/parse-error-at-boost_join/
+#ifndef Q_MOC_RUN
 #include <QtGui/QMainWindow>
 #include <QBitmap>
 #include <QPushButton>
 #include "ui_baxter_io.h"
 #include "qnode.hpp"
+#endif
 
 namespace baxter_sim_io {
 

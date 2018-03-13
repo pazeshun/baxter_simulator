@@ -58,6 +58,9 @@
 #include <image_transport/image_transport.h>
 #include <opencv/cvwimage.h>
 #include <opencv/highgui.h>
+//In OpenCV3.0, cv::imread is moved from highgui to imgcodecs
+//http://tessy.org/wiki/index.php?%B2%E8%C1%FC%A4%CE%C6%C9%A4%DF%B9%FE%A4%DF
+#include <opencv2/imgcodecs.hpp>
 #include <cv_bridge/cv_bridge.h>
 
 #include <sensor_msgs/image_encodings.h>
